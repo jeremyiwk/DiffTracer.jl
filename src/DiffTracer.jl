@@ -1,5 +1,7 @@
 module DiffTracer
 
-# Write your package code here.
+include("solve.jl")
+
+include("utils.jl")
 
 end

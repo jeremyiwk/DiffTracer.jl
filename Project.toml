@@ -3,6 +3,11 @@ uuid = "85b5013c-3cb5-4ee4-88ec-981df2ddbe88"
 authors = ["jeremyiwk <jeremy@micromelody.net> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+Enzyme = "7da242da-08ed-463a-9acd-ee780be4f1d9"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+
 [compat]
 julia = "1.6.7"
 
