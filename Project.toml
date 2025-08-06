@@ -6,6 +6,7 @@ version = "1.0.0-DEV"
 [deps]
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
 Enzyme = "7da242da-08ed-463a-9acd-ee780be4f1d9"
+ParameterHandling = "2412ca09-6db7-441c-8e3a-88d5709968c5"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
