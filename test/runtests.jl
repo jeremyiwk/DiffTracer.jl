@@ -1,6 +1,12 @@
 using DiffTracer
+using SafeTestsets
 using Test
 
-@testset "DiffTracer.jl" begin
-    # Write your tests here.
+@safetestset "DiffTracer.jl" begin
+    @safetestset "types" begin
+        include("./types.jl")
+    end
+    @safetestset "solve" begin
+        include("./solve.jl")
+    end
 end
