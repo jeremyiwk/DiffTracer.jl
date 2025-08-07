@@ -1,7 +1,7 @@
 name = "DiffTracer"
 uuid = "85b5013c-3cb5-4ee4-88ec-981df2ddbe88"
 authors = ["jeremyiwk <jeremy@micromelody.net> and contributors"]
-version = "1.0.0-DEV"
+version = "0.0.1"
 
 [deps]
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
@@ -10,7 +10,7 @@ ParameterHandling = "2412ca09-6db7-441c-8e3a-88d5709968c5"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
-julia = "1.6.7"
+julia = "1.10.10"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
