@@ -1,5 +1,6 @@
 """
     ``
 """
-struct Column
+@kwdef struct Column
+    
 end
