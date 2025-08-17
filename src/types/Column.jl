@@ -2,5 +2,4 @@
     ``
 """
 @kwdef struct Column
-    
 end
