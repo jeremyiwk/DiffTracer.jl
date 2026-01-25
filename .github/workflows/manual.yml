@@ -31,7 +31,7 @@ jobs:
     - name: install-julia
       run: curl -fsSL https://install.julialang.org | sh -s -- --yes
     - name: reload-shell
-      run: source ~/.bashrc
+      run: . /home/runner/.bashrc
     - name: add-julia-version
       run: juliaup add 1.10
     - name: install-package
