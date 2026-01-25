@@ -10,9 +10,9 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'DiffTracer'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: 'all'
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
@@ -30,9 +30,11 @@ jobs:
     # Runs a single command using the runners shell
     - name: install-julia
       run: curl -fsSL https://install.julialang.org | sh -s -- --yes
-    - name: reload-shell
-      run: . /home/runner/.bashrc
+    - name: juliaup-var
+      run: export PATH="/home/runner/.juliaup/bin:$PATH"
     - name: add-julia-version
       run: juliaup add 1.10
+    - name: git-clone
+      run: git clone https://github.com/jeremyiwk/DiffTracer.jl.git
     - name: install-package
-      run: julia +1.10.10 -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
+      run: julia +1.10.10 -e 'using Pkg; Pkg.activate("DiffTracer.jl"); Pkg.instantiate(); Pkg.test()'
