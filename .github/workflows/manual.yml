@@ -42,4 +42,4 @@ jobs:
     - name: git-clone
       run: git clone https://github.com/jeremyiwk/DiffTracer.jl.git
     - name: install-package
-      run: julia -e 'using Pkg; Pkg.activate("DiffTracer.jl"); Pkg.instantiate(); Pkg.test()'
+      run: julia -e 'using Pkg; Pkg.activate("DiffTracer.jl"); Pkg.test()'
