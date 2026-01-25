@@ -27,13 +27,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - uses: actions/checkout@v4
+    - uses: julia-actions/setup-julia@v2
+      with:
+        version: '1.10' # Installs the latest stable 1.x version
+    
     # Runs a single command using the runners shell
-    - name: install-julia
-      run: curl -fsSL https://install.julialang.org | sh -s -- --yes
-    - name: juliaup-var
-      run: export PATH="/home/runner/.juliaup/bin:$PATH"
-    - name: add-julia-version
-      run: juliaup add 1.10
+    # - name: install-julia
+    #   run: curl -fsSL https://install.julialang.org | sh -s -- --yes
+    # - name: juliaup-var
+    #   run: export PATH="/home/runner/.juliaup/bin:$PATH"
+    # - name: add-julia-version
+    #   run: juliaup add 1.10
     - name: git-clone
       run: git clone https://github.com/jeremyiwk/DiffTracer.jl.git
     - name: install-package
