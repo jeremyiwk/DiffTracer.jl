@@ -2,7 +2,12 @@
     ``
 """
 struct Column{T} <: AbstractColumn
-    elements::Dict{Union{Symbol, String}, }
+    elements::Dict{Union{Symbol, String}, AbstractColumnElement}
+    length::T
+    zmin::T
+    zmax::T
+    rmin::T
+    rmax::T
 end
 
 function get_fields(col::Column{T}, xyz::SVector{3, T})
