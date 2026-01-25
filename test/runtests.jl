@@ -9,6 +9,4 @@ using Test
     @safetestset "solve" begin
         include("./solve.jl")
     end
-
-    @info "Tests completed!"
 end

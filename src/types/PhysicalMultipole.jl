@@ -1,3 +1,0 @@
-
-struct PhysicalMultipole <: AbstractColumnElement
-end
