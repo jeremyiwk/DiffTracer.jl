@@ -3,10 +3,7 @@ using SafeTestsets
 using Test
 
 @safetestset "DiffTracer.jl" begin
-    @safetestset "types" begin
-        include("./types.jl")
-    end
-    @safetestset "solve" begin
-        include("./solve.jl")
+    @safetestset "column" begin
+        include("column/types.jl")
     end
 end
