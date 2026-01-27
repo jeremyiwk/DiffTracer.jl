@@ -5,6 +5,6 @@ struct RoundLens{TF<:AbstractAxialPotential} <: AbstractColumnElement
 end
 
 function RoundLens(args)
-    return AnalyticAxialPotential(;args...)
+    return RoundLens(AnalyticAxialPotential(;args...))
 end
 
