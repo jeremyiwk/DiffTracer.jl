@@ -1,5 +1,8 @@
 module DiffTracer
 
+using SpecialFunctions
+using Symbolics
+
 # globals
 MAX_Z_DERIVATIVE = 4
 
@@ -14,7 +17,6 @@ include("column/RoundLens.jl")
 export MultipoleField, RoundLens, Column
 
 # multipole expansion and EoM
-include("physics/AxialFields.jl")
 include("physics/AxialPotential.jl")
 include("physics/EquationsOfMotion.jl")
 include("physics/InitialCondition.jl")
