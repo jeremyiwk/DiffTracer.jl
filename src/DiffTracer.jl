@@ -4,7 +4,7 @@ using SpecialFunctions
 using Symbolics
 
 # globals
-MAX_Z_DERIVATIVE = 4
+MAX_Z_DERIVATIVE = 5
 
 # utils
 include("utils.jl")
