@@ -4,11 +4,12 @@ using SpecialFunctions
 using Symbolics
 
 # globals
-MAX_DERIVATIVE_ORDER = 5
+MAX_DERIVATIVE_ORDER = 5 # should be odd
 MAX_MULTIPOLE_ORDER = 8
 
-# utils
+# general
 include("utils.jl")
+include("AbstractTypes.jl")
 
 # multipole expansion and EoM
 include("physics/AxialPotential.jl")
@@ -18,7 +19,6 @@ include("physics/MultipoleExpansion.jl")
 export AnalyticAxialPotential
 
 # column objects
-include("column/AbstractTypes.jl")
 include("column/Column.jl")
 include("column/MultipoleField.jl")
 include("column/RoundLens.jl")

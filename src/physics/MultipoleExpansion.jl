@@ -12,7 +12,7 @@ for ν in 0:MAX_MULTIPOLE_ORDER,
     Dy = Differential(y)
     w = x + im * y
     w̅ = conj(w)
-    c = simplify((-1/4)^λ * factorial(ν) / (factorial(λ) * factorial(λ + ν)))
+    c = (-1/4)^λ * factorial(ν) / (factorial(λ) * factorial(λ + ν))
     ϕ = c * real((w * w̅)^λ * real(w^ν))
     ex = -expand_derivatives(Dx(ϕ))
     ey = -expand_derivatives(Dy(ϕ))
