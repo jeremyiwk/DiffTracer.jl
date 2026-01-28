@@ -17,10 +17,10 @@ for ν in 0:MAX_MULTIPOLE_ORDER,
     ex = -expand_derivatives(Dx(ϕ))
     ey = -expand_derivatives(Dy(ϕ))
 
-    field = (ν, λ) => (
-        ;φ=eval(build_function(ϕ, x, y)),
-        Ex=eval(build_function(ex, x, y)),
-        Ey=eval(build_function(ey, x, y)),
+    field = (ν, λ) => (;
+        φ = eval(build_function(ϕ, x, y)),
+        Ex = eval(build_function(ex, x, y)),
+        Ey = eval(build_function(ey, x, y)),
     )
     push!(multipole_expansion, field)
 end
