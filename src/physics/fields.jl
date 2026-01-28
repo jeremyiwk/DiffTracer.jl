@@ -29,13 +29,13 @@ for name in _names
     symbolic_Exi_terms = []
     symbolic_Eyi_terms = []
     symbolic_Ezi_terms = []
+    
+    @variables x, y, z, zc, R, L, FR, FL
+    Dx = Differential(x)
+    Dy = Differential(y)
+    Dz = Differential(z)
     for ν in 0:MAX_MULTIPOLE_ORDER,
         λ in 0:Int((MAX_DERIVATIVE_ORDER - 1)/2)
-
-        @variables x, y, z, zc, R, L, FR, FL
-        Dx = Differential(x)
-        Dy = Differential(y)
-        Dz = Differential(z)
         Dz2λ = Differential(z)^(2*λ)
         Φ = 0.5 * (func(_fwd(z, zc, R, L, FR)) + func(_rev(z, zc, R, L, FL)))
         w = x + im * y
@@ -70,23 +70,24 @@ for name in _names
     symbolic_Eyi = simplify(sum(symbolic_Eyi_terms))
     symbolic_Ezi = simplify(sum(symbolic_Ezi_terms))
 
-    numeric_φr  = eval(build_function(symbolic_φr))
-    numeric_Exr = eval(build_function(symbolic_Exr))
-    numeric_Eyr = eval(build_function(symbolic_Eyr))
-    numeric_Ezr = eval(build_function(symbolic_Ezr))
-    numeric_φi  = eval(build_function(symbolic_φi))
-    numeric_Exi = eval(build_function(symbolic_Exi))
-    numeric_Eyi = eval(build_function(symbolic_Eyi))
-    numeric_Ezi = eval(build_function(symbolic_Ezi))
+    numeric_φr  = eval(build_function(symbolic_φr, x, y, z, zc, R, L, FR, FL))
+    numeric_Exr = eval(build_function(symbolic_Exr, x, y, z, zc, R, L, FR, FL))
+    numeric_Eyr = eval(build_function(symbolic_Eyr, x, y, z, zc, R, L, FR, FL))
+    numeric_Ezr = eval(build_function(symbolic_Ezr, x, y, z, zc, R, L, FR, FL))
+    numeric_φi  = eval(build_function(symbolic_φi, x, y, z, zc, R, L, FR, FL))
+    numeric_Exi = eval(build_function(symbolic_Exi, x, y, z, zc, R, L, FR, FL))
+    numeric_Eyi = eval(build_function(symbolic_Eyi, x, y, z, zc, R, L, FR, FL))
+    numeric_Ezi = eval(build_function(symbolic_Ezi, x, y, z, zc, R, L, FR, FL))
 
-    FIELDS[name] = (;
-        φr  = numeric_φr,
-        Exr = numeric_Exr,
-        Eyr = numeric_Eyr,
-        Ezr = numeric_Ezr,
-        φi  = numeric_φi,
-        Exi = numeric_Exi,
-        Eyi = numeric_Eyi,
-        Ezi = numeric_Ezi,
+    fields(x, y, z, zc, R, L, FR, FL) = (;
+        φr  = numeric_φr(x, y, z, zc, R, L, FR, FL),
+        Exr = numeric_Exr(x, y, z, zc, R, L, FR, FL),
+        Eyr = numeric_Eyr(x, y, z, zc, R, L, FR, FL),
+        Ezr = numeric_Ezr(x, y, z, zc, R, L, FR, FL),
+        φi  = numeric_φi(x, y, z, zc, R, L, FR, FL),
+        Exi = numeric_Exi(x, y, z, zc, R, L, FR, FL),
+        Eyi = numeric_Eyi(x, y, z, zc, R, L, FR, FL),
+        Ezi = numeric_Ezi(x, y, z, zc, R, L, FR, FL),
     )
+    FIELDS[name] = fields
 end
