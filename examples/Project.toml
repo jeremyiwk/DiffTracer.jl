@@ -1,2 +1,3 @@
 [deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 DiffTracer = "85b5013c-3cb5-4ee4-88ec-981df2ddbe88"

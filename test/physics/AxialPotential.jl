@@ -4,7 +4,7 @@ using DiffTracer
 
 @testset "Axial Potentials" begin
     test_z_res = 10
-    max_order = DiffTracer.MAX_Z_DERIVATIVE
+    max_order = DiffTracer.MAX_DERIVATIVE_ORDER
     zc, R, L, FR, FL = 0.0, 1.0, 1.0, 1.0, 1.0
     field_forms = DiffTracer._field_forms
     for name in keys(field_forms)

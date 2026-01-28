@@ -26,7 +26,6 @@ function _get_field(name::Symbol, max_order::Int64)
     return fields
 end
 
-
 """
     `AnalyticAxialPotential`
 """
