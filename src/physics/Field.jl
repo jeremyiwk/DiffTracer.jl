@@ -17,7 +17,7 @@ _funcs = (_erf, _tanh, _sigmoid, _sign)
 
 _field_forms = NamedTuple(zip(_names, _funcs))
 
-Field = Dict{Symbol, Function}()
+FIELDS = Dict{Symbol, Function}()
 
 for name in _names
     func = _field_forms[name]
@@ -79,5 +79,14 @@ for name in _names
     numeric_Eyi = eval(build_function(symbolic_Eyi))
     numeric_Ezi = eval(build_function(symbolic_Ezi))
 
-    Field[name] = (;)
+    FIELDS[name] = (;
+        φr  = numeric_φr,
+        Exr = numeric_Exr,
+        Eyr = numeric_Eyr,
+        Ezr = numeric_Ezr,
+        φi  = numeric_φi,
+        Exi = numeric_Exi,
+        Eyi = numeric_Eyi,
+        Ezi = numeric_Ezi,
+    )
 end
