@@ -5,7 +5,7 @@ using Symbolics
 
 
 # globals
-MAX_DERIVATIVE_ORDER = 5 # should be odd
+MAX_DERIVATIVE_ORDER = 7 # should be odd
 MAX_MULTIPOLE_ORDER = 8
 
 # general
