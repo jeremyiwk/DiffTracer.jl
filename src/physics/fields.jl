@@ -42,7 +42,7 @@ for name in _names,
         Φ = 0.5 * (func(_fwd(z, zc, R, L, FR)) + func(_rev(z, zc, R, L, FL)))
         w = x + im * y
         w̅ = conj(w)
-        c = (-1/4)^λ * factorial(ν) / (factorial(λ) * factorial(λ + ν))
+        c = (-1/4)^λ * 1 / (factorial(λ) * factorial(λ + ν, ν))
 
         Φ2λ = expand_derivatives(Dz2λ(Φ))
         φr = c * real((w * w̅)^λ * real(w^ν)) * Φ2λ
