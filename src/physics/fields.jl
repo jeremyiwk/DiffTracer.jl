@@ -12,8 +12,8 @@ _tanh(z) = SpecialFunctions.tanh(z)
 _sigmoid(z) = 2.0 / (1.0 + exp(-z)) - 1.0
 _sign(z) = sign(z)
 
-_names = (:erf, :tanh, :sigmoid, :sign)
-_funcs = (_erf, _tanh, _sigmoid, _sign)
+_names = (:erf, :tanh, :sigmoid,) # :sign)
+_funcs = (_erf, _tanh, _sigmoid,) # _sign)
 
 _field_forms = NamedTuple(zip(_names, _funcs))
 
@@ -41,29 +41,31 @@ for name in _names,
         Dz2λ = Differential(z)^(2*λ)
         Φ = 0.5 * (func(_fwd(z, zc, R, L, FR)) + func(_rev(z, zc, R, L, FL)))
         w = x + im * y
-        r2 = x*x + y*y
-        c =  1 / (factorial(λ) * factorial(λ + ν, ν))
+        w̅ = x - im * y
+        r2 = w * w̅
+        r = sqrt(x*x + y*y)
+        θ = atan(y, x)
+        c =  (-1/4)^λ / (factorial(λ) * factorial(λ + ν, ν))
 
         Φ2λ = expand_derivatives(Dz2λ(Φ))
+        Φ2λdz = expand_derivatives(Dz(Dz2λ(Φ)))
 
-        # φ = r2^λ * w^ν
-        # Ex = -((λ > 0 ? 2 * λ * x * r2^(λ - 1) : 0.0) * w^ν + r2^λ * (ν > 0 ? ν * w^(ν - 1) : 0.0)) * Φ2λ
-        # Ey = -((λ > 0 ? 2 * λ * y * r2^(λ - 1) : 0.0) * w^ν + r2^λ * (ν > 0 ? im * ν * w^(ν - 1) : 0.0)) * Φ2λ
-        # Ez = - φ * expand_derivatives(Dz(Φ2λ))
+        wν = r^ν * cis(ν * θ)
+        r2λ = r2^λ
+        r2λdx = λ > 0 ? 2 * λ * x * r2^(λ - 1) : zero(r2)
+        r2λdy = λ > 0 ? 2 * λ * y * r2^(λ - 1) : zero(r2)
+        wνdx = ν > 0 ? ν * wν * w̅ / r2 : zero(w)
+        wνdy = im * (ν > 0 ? ν * wν * w̅ / r2 : zero(w))
 
-        # φr, φi = real(φ) * Φ2λ, imag(φ) * Φ2λ
-        # Exr, Exi = real(Ex), imag(Ex)
-        # Eyr, Eyi = real(Ey), imag(Ey)
-        # Ezr, Ezi = real(Ez), imag(Ez)
-
-        φr  =  (-r2/4)^λ * real(w^ν) * Φ2λ
-        Exr = -expand_derivatives(Dx(φr))
-        Eyr = -expand_derivatives(Dy(φr))
-        Ezr = -expand_derivatives(Dz(φr))
-        φi  =  (-r2/4)^λ * imag(w^ν) * Φ2λ
-        Exi = -expand_derivatives(Dx(φi))
-        Eyi = -expand_derivatives(Dy(φi))
-        Ezi = -expand_derivatives(Dz(φi))
+        φ = r2^λ * wν * Φ2λ
+        Ex = -(r2λdx * wν + r2λ * wνdx) * Φ2λ
+        Ey = -(r2λdy * wν + r2λ * wνdy) * Φ2λ
+        Ez = - r2^λ * wν * Φ2λdz
+        
+        φr, φi = real(φ), imag(φ)
+        Exr, Exi = real(Ex), imag(Ex)
+        Eyr, Eyi = real(Ey), imag(Ey)
+        Ezr, Ezi = real(Ez), imag(Ez)
 
         push!(symbolic_φr_terms, φr)
         push!(symbolic_Exr_terms, Exr)
