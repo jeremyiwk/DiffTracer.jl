@@ -19,6 +19,10 @@ _field_forms = NamedTuple(zip(_names, _funcs))
 
 FIELDS = Dict([name => Dict() for name in _names])
 
+symbolic_FIELDS = Dict([name => Dict() for name in _names])
+
+@variables x, y, z, zc, R, L, FR, FL
+
 for name in _names,
     ν in 0:MAX_MULTIPOLE_ORDER
 
@@ -32,7 +36,6 @@ for name in _names,
     symbolic_Eyi_terms = []
     symbolic_Ezi_terms = []
     
-    @variables x, y, z, zc, R, L, FR, FL
     Dx = Differential(x)
     Dy = Differential(y)
     Dz = Differential(z)
@@ -50,7 +53,7 @@ for name in _names,
         Φ2λ = expand_derivatives(Dz2λ(Φ))
         Φ2λdz = expand_derivatives(Dz(Dz2λ(Φ)))
 
-        wν = r^ν * cis(ν * θ)
+        wν = w^ν #r^ν * cis(ν * θ)
         r2λ = r2^λ
         r2λdx = λ > 0 ? 2 * λ * x * r2^(λ - 1) : zero(r2)
         r2λdy = λ > 0 ? 2 * λ * y * r2^(λ - 1) : zero(r2)
@@ -85,6 +88,17 @@ for name in _names,
     symbolic_Eyi = sum(symbolic_Eyi_terms)
     symbolic_Ezi = sum(symbolic_Ezi_terms)
 
+    symbolic_FIELDS[name][ν] = (;
+        φr  = symbolic_φr,
+        Exr = symbolic_Exr,
+        Eyr = symbolic_Eyr,
+        Ezr = symbolic_Ezr,
+        φi  = symbolic_φi,
+        Exi = symbolic_Exi,
+        Eyi = symbolic_Eyi,
+        Ezi = symbolic_Ezi,
+    )
+
     numeric_φr  = eval(build_function(symbolic_φr, x, y, z, zc, R, L, FR, FL))
     numeric_Exr = eval(build_function(symbolic_Exr, x, y, z, zc, R, L, FR, FL))
     numeric_Eyr = eval(build_function(symbolic_Eyr, x, y, z, zc, R, L, FR, FL))
@@ -105,3 +119,17 @@ for name in _names,
         Ezi = numeric_Ezi,
     )
 end
+
+Exr = symbolic_FIELDS[name][n].Exr
+Eyr = symbolic_FIELDS[name][n].Eyr
+Ezr = symbolic_FIELDS[name][n].Ezr
+
+Dx2 = Differential(x)
+Dy2 = Differential(y)
+Dz2 = Differential(z)
+
+dEx = expand_derivatives(Dx(Exr))
+dEy = expand_derivatives(Dy(Eyr))
+dEz = expand_derivatives(Dz(Ezr))
+
+lapl_phi = phix + phiy + phiz
