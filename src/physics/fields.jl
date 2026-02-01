@@ -10,10 +10,11 @@ _rev(z, zc, R, L, FL) = (L / (R * FL)) * (0.5 - (z - zc) / L)
 _erf(z) = SpecialFunctions.erf(z)
 _tanh(z) = SpecialFunctions.tanh(z)
 _sigmoid(z) = 2.0 / (1.0 + exp(-z)) - 1.0
+_atan(z) = 2 * atan(z) / π
 _sign(z) = sign(z)
 
-_names = (:erf, :tanh, :sigmoid,) # :sign)
-_funcs = (_erf, _tanh, _sigmoid,) # _sign)
+_names = (:erf, :tanh, :atan, :sigmoid, :sign)
+_funcs = (_erf, _tanh, _atan, _sigmoid, _sign)
 
 _field_forms = NamedTuple(zip(_names, _funcs))
 
@@ -22,6 +23,9 @@ FIELDS = Dict([name => Dict() for name in _names])
 symbolic_FIELDS = Dict([name => Dict() for name in _names])
 
 @variables x, y, z, zc, R, L, FR, FL
+Dx = Differential(x)
+Dy = Differential(y)
+Dz = Differential(z)
 
 for name in _names,
     ν in 0:MAX_MULTIPOLE_ORDER
@@ -35,10 +39,6 @@ for name in _names,
     symbolic_Exi_terms = []
     symbolic_Eyi_terms = []
     symbolic_Ezi_terms = []
-    
-    Dx = Differential(x)
-    Dy = Differential(y)
-    Dz = Differential(z)
 
     for λ in 0:Int((MAX_DERIVATIVE_ORDER - 1)/2)
         Dz2λ = Differential(z)^(2*λ)
@@ -120,16 +120,21 @@ for name in _names,
     )
 end
 
-Exr = symbolic_FIELDS[name][n].Exr
-Eyr = symbolic_FIELDS[name][n].Eyr
-Ezr = symbolic_FIELDS[name][n].Ezr
+# name = :erf
+# n = 2
+# Exr = symbolic_FIELDS[name][n].Exr
+# Eyr = symbolic_FIELDS[name][n].Eyr
+# Ezr = symbolic_FIELDS[name][n].Ezr
 
-Dx2 = Differential(x)
-Dy2 = Differential(y)
-Dz2 = Differential(z)
+# Dx2 = Differential(x)
+# Dy2 = Differential(y)
+# Dz2 = Differential(z)
 
-dEx = expand_derivatives(Dx(Exr))
-dEy = expand_derivatives(Dy(Eyr))
-dEz = expand_derivatives(Dz(Ezr))
+# dEx = expand_derivatives(Dx(Exr))
+# dEy = expand_derivatives(Dy(Eyr))
+# dEz = expand_derivatives(Dz(Ezr))
 
-lapl_phi = phix + phiy + phiz
+# divE = dEx + dEy + dEz
+
+# ndivE = eval(build_function(divE, x, y, z, zc, R, L, FR, FL))
+
