@@ -60,10 +60,10 @@ for name in _names,
         wνdx = ν > 0 ? ν * wν * w̅ / r2 : zero(w)
         wνdy = im * (ν > 0 ? ν * wν * w̅ / r2 : zero(w))
 
-        φ = r2^λ * wν * Φ2λ
-        Ex = -(r2λdx * wν + r2λ * wνdx) * Φ2λ
-        Ey = -(r2λdy * wν + r2λ * wνdy) * Φ2λ
-        Ez = - r2^λ * wν * Φ2λdz
+        φ = c * r2^λ * wν * Φ2λ
+        Ex = -c * (r2λdx * wν + r2λ * wνdx) * Φ2λ
+        Ey = -c * (r2λdy * wν + r2λ * wνdy) * Φ2λ
+        Ez = -c * r2^λ * wν * Φ2λdz
         
         φr, φi = real(φ), imag(φ)
         Exr, Exi = real(Ex), imag(Ex)
