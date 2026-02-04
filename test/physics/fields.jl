@@ -24,7 +24,7 @@ using LinearAlgebra
             Eyi(r) = f.Eyi(r..., zc, R, L, FR, FL)
             Ezi(r) = f.Ezi(r..., zc, R, L, FR, FL)
 
-            for z in (zc - L, zc, zc + L)
+            for z in (zc - L/2, zc, zc + L/2)
                 r = [x, y, z]
                 ∇φr = ForwardDiff.gradient(φr, r)
                 ∇φi = ForwardDiff.gradient(φi, r)

@@ -13,8 +13,8 @@ _sigmoid(z) = 2.0 / (1.0 + exp(-z)) - 1.0
 _atan(z) = 2 * atan(z) / π
 _sign(z) = sign(z)
 
-_names = (:erf, :tanh, :atan, :sigmoid, :sign)
-_funcs = (_erf, _tanh, _atan, _sigmoid, _sign)
+_names = (:erf, :tanh, :atan, :sigmoid)
+_funcs = (_erf, _tanh, _atan, _sigmoid)
 
 _field_forms = NamedTuple(zip(_names, _funcs))
 
