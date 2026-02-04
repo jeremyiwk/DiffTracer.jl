@@ -10,7 +10,7 @@ using LinearAlgebra
         ν in 0:DiffTracer.MAX_MULTIPOLE_ORDER
 
         @testset "Field: $(name), Multipole Order: $(ν)" begin
-            zc, R, L, FR, FL = 0.0, 1.0, 1.0, 0.1, 0.1
+            zc, R, L, FR, FL = 0.0, 1.0, 5.0, 0.1, 0.1
             x, y, z = [0.1, 0.1, zc]
             r = [x, y, z + zc]
 
