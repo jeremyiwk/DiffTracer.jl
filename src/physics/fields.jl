@@ -120,21 +120,13 @@ for name in _names,
     )
 end
 
-# name = :erf
-# n = 2
-# Exr = symbolic_FIELDS[name][n].Exr
-# Eyr = symbolic_FIELDS[name][n].Eyr
-# Ezr = symbolic_FIELDS[name][n].Ezr
-
-# Dx2 = Differential(x)
-# Dy2 = Differential(y)
-# Dz2 = Differential(z)
-
-# dEx = expand_derivatives(Dx(Exr))
-# dEy = expand_derivatives(Dy(Eyr))
-# dEz = expand_derivatives(Dz(Ezr))
-
-# divE = dEx + dEy + dEz
-
-# ndivE = eval(build_function(divE, x, y, z, zc, R, L, FR, FL))
-
+@kwdef struct Field
+    φr::Function
+    Exr::Function
+    Eyr::Function
+    Ezr::Function
+    φi::Function
+    Exi::Function
+    Eyi::Function
+    Ezi::Function
+end

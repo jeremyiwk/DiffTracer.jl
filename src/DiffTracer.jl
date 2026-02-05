@@ -18,7 +18,7 @@ include("physics/AxialPotential.jl")
 include("physics/AnalyticMultipoleField.jl")
 include("physics/EquationsOfMotion.jl")
 include("physics/InitialCondition.jl")
-export AnalyticAxialPotential
+export AnalyticMultipoleField
 
 # column objects
 include("column/Column.jl")
