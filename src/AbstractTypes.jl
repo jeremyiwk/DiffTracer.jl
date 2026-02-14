@@ -1,9 +1,6 @@
 
 abstract type AbstractColumn end
 
-function get_fields(c::AbstractColumn, x, y, z) end
-function get_fields(m::AbstractColumn, r::SVector{3, T}) where {T} end
-
 abstract type AbstractColumnElement end
 
 function get_fields(e::AbstractColumnElement, x, y, z) end

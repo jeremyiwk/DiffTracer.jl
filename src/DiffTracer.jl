@@ -21,10 +21,11 @@ include("physics/InitialCondition.jl")
 export AnalyticMultipoleField
 
 # column objects
+include("column/Excitation.jl")
 include("column/Column.jl")
 include("column/Multipole.jl")
 include("column/RoundLens.jl")
-export Multipole, RoundLens, Column
+export Column, Excitation, Multipole, RoundLens
 export get_fields
 
 # diff eq solvers

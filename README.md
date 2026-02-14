@@ -19,11 +19,11 @@ $$
 We use the fact that the total energy of the particle is
 
 $$
-E = q \phi + \frac{1}{2} m \left(\frac{d x}{dt}^2 + \frac{d y}{dt}^2 + \frac{d z}{dt}^2 \right) \\ 
-E = q \phi + \frac{1}{2} m \frac{d z}{dt}^2 \left(1 + \frac{d x}{dz}^2 + \frac{d y}{dz}^2 \right) \\ 
+E = q \phi + \frac{1}{2} m \left(\frac{d x}{dt}^2 + \frac{d y}{dt}^2 + \frac{d z}{dt}^2 \right) \\
+E = q \phi + \frac{1}{2} m \frac{d z}{dt}^2 \left(1 + \frac{d x}{dz}^2 + \frac{d y}{dz}^2 \right) \\
 $$
 
-where $\phi$ is the electrostatic potential. Therefore, 
+where $\phi$ is the electrostatic potential. Therefore,
 
 $$
 \frac{d z}{dt}^2 = \frac{2}{m} \frac{E - q \phi}{1 + \frac{d x}{dz}^2 + \frac{d y}{dz}^2 }
