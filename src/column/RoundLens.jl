@@ -1,5 +1,5 @@
 """
 """
 struct RoundLens{TF <: AbstractMultipoleField} <: AbstractColumnElement
-    axialpotential::TF
+    field::TF
 end

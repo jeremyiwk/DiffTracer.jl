@@ -63,3 +63,7 @@ struct AnalyticMultipoleField{T} <: AbstractMultipoleField
         )
     end
 end
+
+function get_fields(m::AnalyticMultipoleField, x, y, z)
+    return get_fields(m.field, x, y, z)
+end

@@ -130,3 +130,16 @@ end
     Eyi::Function
     Ezi::Function
 end
+
+function get_field(f::Field, x, y, z)
+    return (;
+    φr = φr(x, y, z),
+    Exr = Exr(x, y, z),
+    Eyr = Eyr(x, y, z),
+    Ezr = Ezr(x, y, z),
+    φi = φi(x, y, z),
+    Exi = Exi(x, y, z),
+    Eyi = Eyi(x, y, z),
+    Ezi = Ezi(x, y, z),
+)
+end
