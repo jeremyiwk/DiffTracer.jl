@@ -31,24 +31,24 @@ for name in _names,
     ν in 0:MAX_MULTIPOLE_ORDER
 
     func = _field_forms[name]
-    symbolic_φr_terms  = []
+    symbolic_φr_terms = []
     symbolic_Exr_terms = []
     symbolic_Eyr_terms = []
     symbolic_Ezr_terms = []
-    symbolic_φi_terms  = []
+    symbolic_φi_terms = []
     symbolic_Exi_terms = []
     symbolic_Eyi_terms = []
     symbolic_Ezi_terms = []
 
-    for λ in 0:Int((MAX_DERIVATIVE_ORDER - 1)/2)
-        Dz2λ = Differential(z)^(2*λ)
+    for λ in 0:Int((MAX_DERIVATIVE_ORDER - 1) / 2)
+        Dz2λ = Differential(z)^(2 * λ)
         Φ = 0.5 * (func(_fwd(z, zc, R, L, FR)) + func(_rev(z, zc, R, L, FL)))
         w = x + im * y
         w̅ = x - im * y
         r2 = w * w̅
-        r = sqrt(x*x + y*y)
+        r = sqrt(x * x + y * y)
         θ = atan(y, x)
-        c =  (-1/4)^λ / (factorial(λ) * factorial(λ + ν, ν))
+        c = (-1 / 4)^λ / (factorial(λ) * factorial(λ + ν, ν))
 
         Φ2λ = expand_derivatives(Dz2λ(Φ))
         Φ2λdz = expand_derivatives(Dz(Dz2λ(Φ)))
@@ -64,7 +64,7 @@ for name in _names,
         Ex = -c * (r2λdx * wν + r2λ * wνdx) * Φ2λ
         Ey = -c * (r2λdy * wν + r2λ * wνdy) * Φ2λ
         Ez = -c * r2^λ * wν * Φ2λdz
-        
+
         φr, φi = real(φ), imag(φ)
         Exr, Exi = real(Ex), imag(Ex)
         Eyr, Eyi = real(Ey), imag(Ey)
@@ -79,44 +79,44 @@ for name in _names,
         push!(symbolic_Eyi_terms, Eyi)
         push!(symbolic_Ezi_terms, Ezi)
     end
-    symbolic_φr  = sum(symbolic_φr_terms)
+    symbolic_φr = sum(symbolic_φr_terms)
     symbolic_Exr = sum(symbolic_Exr_terms)
     symbolic_Eyr = sum(symbolic_Eyr_terms)
     symbolic_Ezr = sum(symbolic_Ezr_terms)
-    symbolic_φi  = sum(symbolic_φi_terms)
+    symbolic_φi = sum(symbolic_φi_terms)
     symbolic_Exi = sum(symbolic_Exi_terms)
     symbolic_Eyi = sum(symbolic_Eyi_terms)
     symbolic_Ezi = sum(symbolic_Ezi_terms)
 
     symbolic_FIELDS[name][ν] = (;
-        φr  = symbolic_φr,
+        φr = symbolic_φr,
         Exr = symbolic_Exr,
         Eyr = symbolic_Eyr,
         Ezr = symbolic_Ezr,
-        φi  = symbolic_φi,
+        φi = symbolic_φi,
         Exi = symbolic_Exi,
         Eyi = symbolic_Eyi,
-        Ezi = symbolic_Ezi,
+        Ezi = symbolic_Ezi
     )
 
-    numeric_φr  = eval(build_function(symbolic_φr, x, y, z, zc, R, L, FR, FL))
+    numeric_φr = eval(build_function(symbolic_φr, x, y, z, zc, R, L, FR, FL))
     numeric_Exr = eval(build_function(symbolic_Exr, x, y, z, zc, R, L, FR, FL))
     numeric_Eyr = eval(build_function(symbolic_Eyr, x, y, z, zc, R, L, FR, FL))
     numeric_Ezr = eval(build_function(symbolic_Ezr, x, y, z, zc, R, L, FR, FL))
-    numeric_φi  = eval(build_function(symbolic_φi, x, y, z, zc, R, L, FR, FL))
+    numeric_φi = eval(build_function(symbolic_φi, x, y, z, zc, R, L, FR, FL))
     numeric_Exi = eval(build_function(symbolic_Exi, x, y, z, zc, R, L, FR, FL))
     numeric_Eyi = eval(build_function(symbolic_Eyi, x, y, z, zc, R, L, FR, FL))
     numeric_Ezi = eval(build_function(symbolic_Ezi, x, y, z, zc, R, L, FR, FL))
 
     FIELDS[name][ν] = (;
-        φr  = numeric_φr,
+        φr = numeric_φr,
         Exr = numeric_Exr,
         Eyr = numeric_Eyr,
         Ezr = numeric_Ezr,
-        φi  = numeric_φi,
+        φi = numeric_φi,
         Exi = numeric_Exi,
         Eyi = numeric_Eyi,
-        Ezi = numeric_Ezi,
+        Ezi = numeric_Ezi
     )
 end
 

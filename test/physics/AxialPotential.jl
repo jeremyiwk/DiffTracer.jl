@@ -13,6 +13,6 @@ using DiffTracer
         1.0,
         1.0,
         1.0,
-        :erf,
+        :erf
     )
 end

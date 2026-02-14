@@ -1,8 +1,8 @@
 module DiffTracer
 
 using SpecialFunctions
+using StaticArrays
 using Symbolics
-
 
 # globals
 MAX_DERIVATIVE_ORDER = 5 # should be odd
@@ -24,7 +24,8 @@ export AnalyticMultipoleField
 include("column/Column.jl")
 include("column/Multipole.jl")
 include("column/RoundLens.jl")
-export MultipoleField, RoundLens, Column
+export Multipole, RoundLens, Column
+export get_fields
 
 # diff eq solvers
 include("tracers/Tracer.jl")

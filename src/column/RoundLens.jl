@@ -1,10 +1,5 @@
 """
 """
-struct RoundLens{TF<:AbstractAxialPotential} <: AbstractColumnElement
+struct RoundLens{TF <: AbstractMultipoleField} <: AbstractColumnElement
     axialpotential::TF
 end
-
-function RoundLens(args)
-    return RoundLens(AnalyticAxialPotential(;args...))
-end
-
