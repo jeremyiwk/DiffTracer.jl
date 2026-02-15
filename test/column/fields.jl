@@ -24,7 +24,7 @@ using DiffTracer
             zmax,
             rmin,
             rmax,
-            :erf,
+            :erf
         ]
 
         potential = AnalyticMultipoleField(params...)
@@ -41,18 +41,18 @@ using DiffTracer
             Dict(
                 "l0" => l0,
                 "l1" => l1,
-                "l2" => l2,
+                "l2" => l2
             ),
             zmin,
-            zmax,
+            zmax
         )
 
         excitation = Excitation(
             Dict(
-                "l0" => 1.0,
-                "l1" => 1.0,
-                "l2" => 1.0,
-            ),
+            "l0" => 1.0,
+            "l1" => 1.0,
+            "l2" => 1.0
+        ),
         )
         f = get_fields(column, excitation, 0.0, 0.0, 0.0)
 
