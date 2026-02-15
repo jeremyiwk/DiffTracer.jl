@@ -13,4 +13,5 @@ using Test
 # end
 @safetestset "Column" begin
     include("column/types.jl")
+    include("column/fields.jl")
 end

@@ -1,8 +1,11 @@
+
+const ElementList{T} where {T} = Union{Dict{Symbol, T<:AbstractColumnElement}, Dict{String, T<:AbstractColumnElement}}
+
 """
     ``
 """
-struct Column{T} <: AbstractColumn
-    elements::Dict{Union{Symbol, String}, AbstractColumnElement}
+struct Column{T,F} <: AbstractColumn
+    elements::ElementList{F}
     zmin::T
     zmax::T
 end
