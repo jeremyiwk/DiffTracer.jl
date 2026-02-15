@@ -1,6 +1,6 @@
 
-const ElementList{T} where {T} = Union{
-    Dict{Symbol, T <: AbstractColumnElement}, Dict{String, T <: AbstractColumnElement}}
+const ElementList{T} = Union{
+    Dict{Symbol, T}, Dict{String, T}} where {T<: AbstractColumnElement}
 
 """
     ``
@@ -11,8 +11,8 @@ struct Column{T, F} <: AbstractColumn
     zmax::T
 end
 
-function get_fields(c::Column{T}, e::Excitation, x, y, z) where {T}
-    e = c.elements
+function get_fields(c::Column{Tc}, e::Excitation{Te}, x, y, z) where {Tc,Te}
+    el = c.elements
     return c.zmin < z < c.zmax ?
-           sum([e[key].voltages * get_fields(e, x, y, z) for key in keys(e)]) : zero(T)
+           sum([e[key].voltages * get_fields(el, x, y, z) for key in keys(el)]) : zero(Te)
 end

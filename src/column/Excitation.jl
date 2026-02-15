@@ -1,4 +1,6 @@
+const ExcitationList{T} = Union{
+    Dict{Symbol, T}, Dict{String, T}} where {T}
 
 mutable struct Excitation{T}
-    voltages::Dict{Union{Symbol, String}, T}
+    voltages::ExcitationList{T}
 end
