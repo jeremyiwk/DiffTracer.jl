@@ -5,7 +5,7 @@ This is an experimental package for differentiable "ray-tracing". Much of the ph
 Typically, charged particles are propagated through electromagnetic fields via the Lorentz force law:
 
 $$
-m \frac{d^2 \mathbf{r}}{ dt^2} = q \left( \mathbf{E} + \frac{d\mathbf{r}}{dt} \mathbf{B} \right)
+m \frac{d^2 \mathbf{r}}{ dt^2} = q \left( \mathbf{E} + \frac{d\mathbf{r}}{dt} \times \mathbf{B} \right)
 $$
 
 where $\mathbf{r} = (x, y, z)$. Setting $\mathbf{B} = \mathbf{0}$ and assuming we can parameterize by $z$ we have
