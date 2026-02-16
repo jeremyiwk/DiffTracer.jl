@@ -12,7 +12,11 @@ where $\mathbf{r} = (x, y, z)$. Setting $\mathbf{B} = \mathbf{0}$ and assuming w
 
 $$
 \frac{d\mathbf{r_i}}{dt} = \frac{d\mathbf{r_i}}{ dz} \frac{d z}{dt} \\
+$$
+$$
 \implies \frac{d^2\mathbf{r_i}}{dt^2} = \frac{d\mathbf{r_i}}{ dz} \frac{d^2 z}{dt^2} + \frac{d^2\mathbf{r_i}}{dz^2} \left( \frac{d z}{dt} \right)^2 \\
+$$
+$$
 \implies \frac{d^2\mathbf{r_i}}{dt^2} = \frac{q}{m} \frac{d\mathbf{r_i}}{ dz} \mathbf{E}_z + \frac{d^2\mathbf{r_i}}{dz^2} \left( \frac{d z}{dt} \right)^2 \\
 $$
 
@@ -20,6 +24,8 @@ We use the fact that the total energy of the particle is
 
 $$
 E = q \phi + \frac{1}{2} m \left(\frac{d x}{dt}^2 + \frac{d y}{dt}^2 + \frac{d z}{dt}^2 \right) \\
+$$
+$$
 E = q \phi + \frac{1}{2} m \frac{d z}{dt}^2 \left(1 + \frac{d x}{dz}^2 + \frac{d y}{dz}^2 \right) \\
 $$
 
