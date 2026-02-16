@@ -7,7 +7,13 @@ end
 
 
 function Base.show(io::IO, m::Multipole)
-    Base.show(io::IO, m::Multipole, "      ")
+    compact = get(io, :compact, false)
+    if !compact
+        Base.show(io::IO, m::Multipole, "     ")
+    else
+        # Base.show(io::IO, Multipole)
+        print(io, "Multipole")
+    end
 end
 
 function Base.show(io::IO, m::Multipole, pfx)

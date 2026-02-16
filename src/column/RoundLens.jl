@@ -5,7 +5,12 @@ struct RoundLens{TF <: AbstractMultipoleField} <: AbstractColumnElement
 end
 
 function Base.show(io::IO, r::RoundLens)
-    Base.show(io::IO, r::RoundLens, "     ")
+    compact = get(io, :compact, false)
+    if !compact
+        Base.show(io::IO, r::RoundLens, "     ")
+    else
+        print(io, "Round Lens")
+    end
 end
 
 function Base.show(io::IO, r::RoundLens, pfx)

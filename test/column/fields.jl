@@ -41,10 +41,10 @@ using DiffTracer
         zmax = 0.4
         column = Column(
             Dict(
-                "l0" => l0,
-                "l1" => l1,
-                "mp" => mp,
-                "l2" => l2
+                :l0 => l0, #"l0" => l0,
+                :l1 => l1, #"l1" => l1,
+                :mp => mp, #"mp" => mp,
+                :l2 => l2, #"l2" => l2,
             ),
             zmin,
             zmax
