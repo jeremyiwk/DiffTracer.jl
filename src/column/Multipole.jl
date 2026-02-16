@@ -6,16 +6,19 @@ struct Multipole{TF <: AbstractMultipoleField} <: AbstractColumnElement
 end
 
 
-function Base.show(io::IO, m::Multipole)
-    compact = get(io, :compact, false)
-    if !compact
-        Base.show(io::IO, m::Multipole, "     ")
-    else
-        # Base.show(io::IO, Multipole)
-        print(io, "Multipole")
-    end
+# ::MIME"text/plain"
+function Base.show(io::IO, ::MIME"text/plain", m::Multipole)
+    Base.show(io::IO, m::Multipole, "      ")
+    # compact = get(io, :compact, false)
+    # if !compact
+    #     Base.show(io::IO, m::Multipole, "      ")
+    # else
+    #     # Base.show(io::IO, Multipole)
+    #     print(io, "Multipole")
+    # end
 end
 
+ Base.show(io::IO, m::Multipole) = print(io, "Multipole")
 function Base.show(io::IO, m::Multipole, pfx)
     f = m.field
     println(pfx[1] * "╦═ Multipole")
