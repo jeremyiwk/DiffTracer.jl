@@ -34,6 +34,8 @@ using DiffTracer
         l1 = RoundLens(AnalyticMultipoleField(params...))
         params[2] = 0.35
         l2 = RoundLens(AnalyticMultipoleField(params...))
+        params[1] = 2
+        mp = Multipole(2, AnalyticMultipoleField(params...))
 
         zmin = 0.0
         zmax = 0.4
@@ -41,6 +43,7 @@ using DiffTracer
             Dict(
                 "l0" => l0,
                 "l1" => l1,
+                "mp" => mp,
                 "l2" => l2
             ),
             zmin,
