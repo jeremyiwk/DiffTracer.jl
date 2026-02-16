@@ -33,5 +33,7 @@ Thus, we can rewrite the equations of motion as
 
 $$
 \frac{d^2 x}{dz^2} = \frac{1}{2( E/q - \phi)} \left( \mathbf{E}_x - \frac{d x}{dz} \mathbf{E}_z \right) \left( 1 + \frac{d x}{dz}^2 + \frac{d y}{dz}^2 \right) \\
+$$
+$$
 \frac{d^2 y}{dz^2} = \frac{1}{2( E/q - \phi)} \left( \mathbf{E}_y - \frac{d y}{dz} \mathbf{E}_z \right) \left( 1 + \frac{d x}{dz}^2 + \frac{d y}{dz}^2 \right) \\
 $$
