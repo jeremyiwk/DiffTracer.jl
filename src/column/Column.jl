@@ -32,6 +32,6 @@ function Base.show(io::IO, ::MIME"text/plain", c::Column)
         pfx = [s, q, q, q, q, q, q, q]
         
         # Base.show(io, ::MIME"text/plain", el[k])
-        # _show(io, el[k], pfx)
+        _show(io, el[k], pfx)
     end
 end
