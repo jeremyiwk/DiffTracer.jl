@@ -17,7 +17,7 @@ function get_fields(c::Column{Tc}, e::Excitation{Te}, x, y, z) where {Tc,Te}
            sum([e[key].voltages * get_fields(el, x, y, z) for key in keys(el)]) : zero(Te)
 end
 
-function Base.show(io::IO, c::Column)
+function Base.show(io::IO, ::MIME"text/plain", c::Column)
     el = c.elements
     s = "Column ═╗"
     println(s)
@@ -30,6 +30,8 @@ function Base.show(io::IO, c::Column)
         d = e ? " " : "║"
         q = p * d * repeat(" ", l)
         pfx = [s, q, q, q, q, q, q, q]
-        Base.show(io, el[k], pfx)
+        
+        # Base.show(io, ::MIME"text/plain", el[k])
+        # _show(io, el[k], pfx)
     end
 end
